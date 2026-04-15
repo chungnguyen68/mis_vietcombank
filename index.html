@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Chiến lược ATTT Vietcombank - HUB 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700&display=swap');
+        
+        : root {
+            --vcb-green: #005a3c;
+            --vcb-light-green: #e6f0ed;
+            --vcb-accent: #8dc63f;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: #f8fafc;
+            overflow: hidden; /* Chế độ slide */
+        }
+
+        .vcb-gradient {
+            background: linear-gradient(135deg, var(--vcb-green) 0%, #00422c 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .timer-warning {
+            color: #ef4444;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .bullet-icon {
+            color: var(--vcb-green);
+            margin-right: 0.75rem;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col">
+
+    <!-- HEADER SECTION -->
+    <header class="vcb-gradient text-white p-6 shadow-xl flex justify-between items-center relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -mr-32 -mt-32"></div>
+        <div class="z-10">
+            <h1 class="text-3xl font-extrabold tracking-tight uppercase">Chiến lược Quản trị An toàn Thông tin tại Vietcombank</h1>
+            <p class="text-emerald-200 text-lg font-medium">Môn: Quản trị Chiến lược Hệ thống Thông tin | HUB 2026</p>
+        </div>
+        <div class="text-right z-10">
+            <div class="bg-white text-[#005a3c] font-black text-2xl px-5 py-2 rounded-lg shadow-lg inline-block italic">
+                Vietcombank
+            </div>
+            <p class="text-xs mt-2 font-light tracking-widest text-emerald-100 uppercase">Trình bày: PGS.TS Nguyễn Hoàng Chung</p>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT - 3 PILLARS STRUCTURE -->
+    <main class="flex-grow p-8 grid grid-cols-3 gap-8">
+        
+        <!-- COLUMN 1: ORGANIZATION & STRATEGY (40s) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-7 card-hover flex flex-col">
+            <div class="flex items-center mb-6">
+                <div class="bg-[#e6f0ed] p-3 rounded-xl mr-4">
+                    <i class="fas fa-sitemap text-2xl text-[#005a3c]"></i>
+                </div>
+                <h2 class="text-xl font-bold text-gray-800">I. Tổ chức & Chiến lược</h2>
+            </div>
+            
+            <div class="space-y-6 flex-grow">
+                <div class="bg-gray-50 p-4 rounded-xl border-l-4 border-[#005a3c]">
+                    <h3 class="font-bold text-[#005a3c] text-sm uppercase mb-2">Đơn vị chủ chốt</h3>
+                    <ul class="text-gray-700 space-y-2 text-sm">
+                        <li class="flex items-start"><i class="fas fa-shield-halved bullet-icon"></i><span><b>Phòng CS An ninh TT:</b> Điều phối & Giám sát toàn hệ thống.</span></li>
+                        <li class="flex items-start"><i class="fas fa-lightbulb bullet-icon"></i><span><b>Trung tâm VCI (03/2025):</b> R&D công nghệ bảo mật mới.</span></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-gray-800 text-sm mb-3">Trụ cột Chiến lược (3P)</h3>
+                    <div class="grid grid-cols-3 gap-2 text-center">
+                        <div class="p-2 bg-emerald-50 rounded-lg">
+                            <i class="fas fa-users text-[#005a3c] mb-1"></i>
+                            <p class="text-[10px] font-bold">CON NGƯỜI</p>
+                        </div>
+                        <div class="p-2 bg-emerald-50 rounded-lg">
+                            <i class="fas fa-sync text-[#005a3c] mb-1"></i>
+                            <p class="text-[10px] font-bold">QUY TRÌNH</p>
+                        </div>
+                        <div class="p-2 bg-emerald-50 rounded-lg">
+                            <i class="fas fa-microchip text-[#005a3c] mb-1"></i>
+                            <p class="text-[10px] font-bold">CÔNG NGHỆ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-sm italic text-gray-500 border-t pt-4">
+                    <i class="fas fa-info-circle mr-1"></i> Nghị quyết 2588-NQ/ĐU (2025) & Phong trào "Bình dân học vụ số".
+                </div>
+            </div>
+        </section>
+
+        <!-- COLUMN 2: TECHNICAL SOLUTIONS (40s) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-7 card-hover flex flex-col">
+            <div class="flex items-center mb-6">
+                <div class="bg-blue-50 p-3 rounded-xl mr-4">
+                    <i class="fas fa-user-shield text-2xl text-blue-700"></i>
+                </div>
+                <h2 class="text-xl font-bold text-gray-800">II. Giải pháp Kỹ thuật</h2>
+            </div>
+
+            <div class="space-y-4 flex-grow">
+                <div class="p-4 border border-blue-100 rounded-xl bg-blue-50/30">
+                    <h3 class="font-bold text-blue-800 text-sm mb-2"><i class="fas fa-key mr-2"></i>Mã hóa & Xác thực</h3>
+                    <p class="text-sm text-gray-600">AES-256, MFA, PKI, Sinh trắc học khuôn mặt & Giọng nói (eKYC).</p>
+                </div>
+
+                <div class="p-4 border border-blue-100 rounded-xl bg-blue-50/30">
+                    <h3 class="font-bold text-blue-800 text-sm mb-2"><i class="fas fa-satellite-dish mr-2"></i>Giám sát Chủ động</h3>
+                    <p class="text-sm text-gray-600">IDS/IPS, Trung tâm SOC 24/7, SIEM tích hợp AI phát hiện bất thường.</p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-gray-700 text-xs uppercase mb-3 tracking-widest text-center">Đối tác chiến lược toàn cầu</h3>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1 bg-white border border-gray-200 rounded text-xs font-bold text-gray-400">IBM Security</span>
+                        <span class="px-3 py-1 bg-white border border-gray-200 rounded text-xs font-bold text-gray-400">FORTINET</span>
+                        <span class="px-3 py-1 bg-white border border-gray-200 rounded text-xs font-bold text-gray-400">BKAV</span>
+                        <span class="px-3 py-1 bg-white border border-gray-200 rounded text-xs font-bold text-gray-400">CYRADAR</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COLUMN 3: CHALLENGES & PROPOSALS (30s) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-7 card-hover flex flex-col border-t-8 border-red-500">
+            <div class="flex items-center mb-6">
+                <div class="bg-red-50 p-3 rounded-xl mr-4">
+                    <i class="fas fa-exclamation-triangle text-2xl text-red-600"></i>
+                </div>
+                <h2 class="text-xl font-bold text-gray-800">III. Thách thức & Đề xuất</h2>
+            </div>
+
+            <div class="space-y-6 flex-grow">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="text-center">
+                        <p class="text-3xl font-black text-red-600">71%</p>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold">Tấn công nhắm vào Ngân hàng</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-black text-orange-600">18.9T</p>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold">Tỷ đồng thiệt hại (2024)</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2">Giải pháp chiến lược tới 2030:</h3>
+                    <div class="flex items-center text-sm bg-gray-50 p-3 rounded-lg">
+                        <i class="fas fa-fingerprint text-red-500 mr-3 text-lg"></i>
+                        <span><b>Mô hình Zero Trust:</b> "Không tin tưởng, luôn xác minh".</span>
+                    </div>
+                    <div class="flex items-center text-sm bg-gray-50 p-3 rounded-lg">
+                        <i class="fas fa-certificate text-red-500 mr-3 text-lg"></i>
+                        <span><b>ISO/IEC 27001:2022:</b> Chuẩn hóa quốc tế toàn diện.</span>
+                    </div>
+                    <div class="flex items-center text-sm bg-gray-50 p-3 rounded-lg">
+                        <i class="fas fa-brain text-red-500 mr-3 text-lg"></i>
+                        <span><b>AI-Powered Security:</b> Phòng vệ Deepfake & Phishing.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER / SOURCE -->
+    <footer class="bg-gray-100 px-8 py-3 text-gray-500 text-[10px] flex justify-between items-center border-t">
+        <div>Nguồn: Vietcombank Report 2025 | VCS 2024 | Thông tư 09/2020/TT-NHNN</div>
+        <div class="font-bold uppercase tracking-widest">Đại học Ngân Hàng TP.HCM - HUB 2026</div>
+    </footer>
+
+    <!-- INTERACTIVE FLOATING TIMER -->
+    <div id="timerContainer" class="fixed bottom-10 right-10 bg-white shadow-2xl rounded-2xl p-4 border border-gray-200 z-50 flex flex-col items-center min-w-[140px] transition-all duration-500">
+        <span class="text-[10px] font-black text-gray-400 tracking-widest mb-1 uppercase">Time Remaining</span>
+        <div id="countdown" class="text-4xl font-mono font-bold text-gray-800">03:00</div>
+        
+        <div class="flex gap-3 mt-3">
+            <button id="startBtn" onclick="toggleTimer()" class="w-10 h-10 rounded-full bg-[#005a3c] text-white flex items-center justify-center hover:bg-emerald-700 shadow-md">
+                <i id="playIcon" class="fas fa-play"></i>
+            </button>
+            <button onclick="resetTimer()" class="w-10 h-10 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center hover:bg-gray-200">
+                <i class="fas fa-redo"></i>
+            </button>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="w-full h-1 bg-gray-100 rounded-full mt-4 overflow-hidden">
+            <div id="progressBar" class="h-full bg-[#005a3c] transition-all duration-1000" style="width: 100%"></div>
+        </div>
+    </div>
+
+    <script>
+        let timeLeft = 180; // 3 minutes in seconds
+        let timerId = null;
+        let isRunning = false;
+
+        const display = document.getElementById('countdown');
+        const playIcon = document.getElementById('playIcon');
+        const progressBar = document.getElementById('progressBar');
+        const container = document.getElementById('timerContainer');
+
+        function updateDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            display.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Progress Bar update
+            const percentage = (timeLeft / 180) * 100;
+            progressBar.style.width = percentage + '%';
+
+            // Warning styles
+            if (timeLeft <= 30 && timeLeft > 0) {
+                display.classList.add('timer-warning');
+                container.classList.add('border-red-500', 'scale-110');
+            } else if (timeLeft === 0) {
+                display.classList.remove('timer-warning');
+                display.textContent = "TIME UP";
+                display.classList.add('text-red-600', 'text-2xl');
+                clearInterval(timerId);
+            } else {
+                display.classList.remove('timer-warning');
+                container.classList.remove('border-red-500', 'scale-110');
+            }
+        }
+
+        function toggleTimer() {
+            if (isRunning) {
+                clearInterval(timerId);
+                playIcon.className = 'fas fa-play';
+                isRunning = false;
+            } else {
+                if (timeLeft <= 0) return;
+                isRunning = true;
+                playIcon.className = 'fas fa-pause';
+                timerId = setInterval(() => {
+                    timeLeft--;
+                    updateDisplay();
+                }, 1000);
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerId);
+            timeLeft = 180;
+            isRunning = false;
+            playIcon.className = 'fas fa-play';
+            display.classList.remove('text-red-600', 'text-2xl');
+            updateDisplay();
+        }
+
+        // Spacebar to play/pause
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                toggleTimer();
+            }
+        });
+
+        // Initialize
+        updateDisplay();
+    </script>
+</body>
+</html>
