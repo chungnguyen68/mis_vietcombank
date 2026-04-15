@@ -11,174 +11,267 @@
         
         : root {
             --vcb-green: #005a3c;
-            --vcb-light-green: #e6f0ed;
-            --vcb-accent: #8dc63f;
+            --vcb-dark: #002d1e;
+            --vcb-light: #8dc63f;
+            --cyber-blue: #00f2ff;
         }
 
         body {
             font-family: 'Lexend', sans-serif;
-            background-color: #f8fafc;
-            overflow: hidden; /* Chế độ slide */
+            background-color: #011611; /* Nền tối để nổi bật yếu tố Cyber */
+            overflow: hidden;
+            color: #e2e8f0;
         }
 
-        .vcb-gradient {
-            background: linear-gradient(135deg, var(--vcb-green) 0%, #00422c 100%);
+        /* Hiệu ứng Nền Cyber Security */
+        .cyber-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(0, 90, 60, 0.1) 0%, rgba(1, 22, 17, 1) 100%),
+                url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            z-index: -1;
         }
 
-        .card-hover {
-            transition: all 0.3s ease;
+        .matrix-effect {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.05;
+            pointer-events: none;
+            background-image: linear-gradient(0deg, transparent 24%, var(--vcb-light) 25%, var(--vcb-light) 26%, transparent 27%, transparent 74%, var(--vcb-light) 75%, var(--vcb-light) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, var(--vcb-light) 25%, var(--vcb-light) 26%, transparent 27%, transparent 74%, var(--vcb-light) 75%, var(--vcb-light) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
         }
 
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        /* Scanning Line Effect */
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--vcb-light), transparent);
+            top: -2px;
+            animation: scan 8s linear infinite;
+            z-index: 10;
+            opacity: 0.3;
         }
 
-        .timer-warning {
-            color: #ef4444;
-            animation: pulse 1s infinite;
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        .vcb-header {
+            background: linear-gradient(90deg, var(--vcb-green) 0%, var(--vcb-dark) 100%);
+            border-bottom: 3px solid var(--vcb-light);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
-        .bullet-icon {
-            color: var(--vcb-green);
-            margin-right: 0.75rem;
-            margin-top: 0.25rem;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(141, 198, 63, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--vcb-light);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .cyber-btn {
+            background: var(--vcb-green);
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+            transition: all 0.3s;
+        }
+
+        .cyber-btn:hover {
+            background: var(--vcb-light);
+            color: var(--vcb-dark);
+        }
+
+        /* Tiền lơ lửng & icon security */
+        .floating-icon {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 10s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .title-glow {
+            text-shadow: 0 0 15px rgba(141, 198, 63, 0.5);
+        }
+
+        .timer-security {
+            background: rgba(0,0,0,0.8);
+            border: 2px solid var(--vcb-light);
+            box-shadow: 0 0 20px rgba(141, 198, 63, 0.3);
+        }
+
     </style>
 </head>
 <body class="h-screen flex flex-col">
 
+    <div class="cyber-bg"></div>
+    <div class="matrix-effect"></div>
+    <div class="scan-line"></div>
+
+    <!-- Floating Security Elements -->
+    <i class="fas fa-shield-alt floating-icon text-6xl text-emerald-400" style="top: 15%; left: 5%;"></i>
+    <i class="fas fa-dollar-sign floating-icon text-5xl text-yellow-400" style="bottom: 20%; left: 8%; animation-delay: 2s;"></i>
+    <i class="fas fa-lock floating-icon text-4xl text-blue-400" style="top: 40%; right: 10%; animation-delay: 4s;"></i>
+    <i class="fas fa-microchip floating-icon text-7xl text-emerald-500" style="bottom: 10%; right: 5%; animation-delay: 1s;"></i>
+
     <!-- HEADER SECTION -->
-    <header class="vcb-gradient text-white p-6 shadow-xl flex justify-between items-center relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -mr-32 -mt-32"></div>
-        <div class="z-10">
-            <h1 class="text-3xl font-extrabold tracking-tight uppercase">Chiến lược Quản trị An toàn Thông tin tại Vietcombank</h1>
-            <p class="text-emerald-200 text-lg font-medium">Môn: Quản trị Chiến lược Hệ thống Thông tin | HUB 2026</p>
+    <header class="vcb-header text-white p-5 flex justify-between items-center relative z-20">
+        <div>
+            <h1 class="text-3xl font-extrabold tracking-tight uppercase title-glow text-white">
+                Chiến lược Quản trị An toàn Thông tin Vietcombank
+            </h1>
+            <div class="flex items-center mt-1">
+                <span class="bg-emerald-500 text-xs font-bold px-2 py-0.5 rounded mr-2 animate-pulse">SECURE CONNECTION</span>
+                <p class="text-emerald-200 text-sm font-medium opacity-80">Hệ quản trị Chiến lược HTTT | HUB 2026</p>
+            </div>
         </div>
-        <div class="text-right z-10">
-            <div class="bg-white text-[#005a3c] font-black text-2xl px-5 py-2 rounded-lg shadow-lg inline-block italic">
+        <div class="text-right">
+            <div class="bg-white text-[#005a3c] font-black text-2xl px-4 py-1 rounded shadow-lg italic inline-block">
                 Vietcombank
             </div>
-            <p class="text-xs mt-2 font-light tracking-widest text-emerald-100 uppercase">Trình bày: PGS.TS Nguyễn Hoàng Chung</p>
+            <p class="text-[10px] mt-2 font-bold tracking-widest text-emerald-300 uppercase">
+                Trình bày: Nguyễn Hoàng Chung
+            </p>
         </div>
     </header>
 
-    <!-- MAIN CONTENT - 3 PILLARS STRUCTURE -->
-    <main class="flex-grow p-8 grid grid-cols-3 gap-8">
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow p-8 grid grid-cols-3 gap-8 relative z-20">
         
-        <!-- COLUMN 1: ORGANIZATION & STRATEGY (40s) -->
-        <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-7 card-hover flex flex-col">
+        <!-- I. ORGANIZATION -->
+        <section class="glass-card rounded-2xl p-7 flex flex-col group">
             <div class="flex items-center mb-6">
-                <div class="bg-[#e6f0ed] p-3 rounded-xl mr-4">
-                    <i class="fas fa-sitemap text-2xl text-[#005a3c]"></i>
+                <div class="bg-emerald-900/50 p-3 rounded-lg mr-4 border border-emerald-500 group-hover:bg-emerald-500 transition-colors">
+                    <i class="fas fa-network-wired text-2xl text-emerald-300 group-hover:text-white"></i>
                 </div>
-                <h2 class="text-xl font-bold text-gray-800">I. Tổ chức & Chiến lược</h2>
+                <h2 class="text-xl font-bold text-white tracking-wide">I. Tổ chức & Chiến lược</h2>
             </div>
             
             <div class="space-y-6 flex-grow">
-                <div class="bg-gray-50 p-4 rounded-xl border-l-4 border-[#005a3c]">
-                    <h3 class="font-bold text-[#005a3c] text-sm uppercase mb-2">Đơn vị chủ chốt</h3>
-                    <ul class="text-gray-700 space-y-2 text-sm">
-                        <li class="flex items-start"><i class="fas fa-shield-halved bullet-icon"></i><span><b>Phòng CS An ninh TT:</b> Điều phối & Giám sát toàn hệ thống.</span></li>
-                        <li class="flex items-start"><i class="fas fa-lightbulb bullet-icon"></i><span><b>Trung tâm VCI (03/2025):</b> R&D công nghệ bảo mật mới.</span></li>
+                <div class="bg-emerald-950/40 p-4 rounded-xl border border-emerald-900/50">
+                    <h3 class="font-bold text-emerald-400 text-xs uppercase mb-3 flex items-center">
+                        <span class="w-2 h-2 bg-emerald-400 rounded-full mr-2"></span> Đơn vị chủ chốt
+                    </h3>
+                    <ul class="text-emerald-100/80 space-y-3 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-emerald-500 mt-1 mr-2 text-[10px]"></i>
+                            <span><b>Phòng CS An ninh TT:</b> Trái tim quản trị & Giám sát toàn hệ thống.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-emerald-500 mt-1 mr-2 text-[10px]"></i>
+                            <span><b>Trung tâm VCI (03/2025):</b> "Hub" đổi mới bảo mật & R&D Tech.</span>
+                        </li>
                     </ul>
                 </div>
 
-                <div>
-                    <h3 class="font-bold text-gray-800 text-sm mb-3">Trụ cột Chiến lược (3P)</h3>
-                    <div class="grid grid-cols-3 gap-2 text-center">
-                        <div class="p-2 bg-emerald-50 rounded-lg">
-                            <i class="fas fa-users text-[#005a3c] mb-1"></i>
-                            <p class="text-[10px] font-bold">CON NGƯỜI</p>
+                <div class="pt-2">
+                    <h3 class="font-bold text-gray-400 text-[10px] uppercase mb-3 text-center tracking-[0.2em]">Trụ cột chiến lược (3P)</h3>
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="p-3 bg-white/5 rounded-lg text-center border border-white/10 hover:border-emerald-500 transition-all">
+                            <i class="fas fa-user-shield text-emerald-400 mb-2"></i>
+                            <p class="text-[9px] font-bold">CON NGƯỜI</p>
                         </div>
-                        <div class="p-2 bg-emerald-50 rounded-lg">
-                            <i class="fas fa-sync text-[#005a3c] mb-1"></i>
-                            <p class="text-[10px] font-bold">QUY TRÌNH</p>
+                        <div class="p-3 bg-white/5 rounded-lg text-center border border-white/10 hover:border-emerald-500 transition-all">
+                            <i class="fas fa-project-diagram text-emerald-400 mb-2"></i>
+                            <p class="text-[9px] font-bold">QUY TRÌNH</p>
                         </div>
-                        <div class="p-2 bg-emerald-50 rounded-lg">
-                            <i class="fas fa-microchip text-[#005a3c] mb-1"></i>
-                            <p class="text-[10px] font-bold">CÔNG NGHỆ</p>
+                        <div class="p-3 bg-white/5 rounded-lg text-center border border-white/10 hover:border-emerald-500 transition-all">
+                            <i class="fas fa-cpu text-emerald-400 mb-2"></i>
+                            <p class="text-[9px] font-bold">CÔNG NGHỆ</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="text-sm italic text-gray-500 border-t pt-4">
-                    <i class="fas fa-info-circle mr-1"></i> Nghị quyết 2588-NQ/ĐU (2025) & Phong trào "Bình dân học vụ số".
-                </div>
+                <p class="text-[11px] text-emerald-500/70 italic mt-auto">
+                    <i class="fas fa-fingerprint mr-1"></i> Nghị quyết 2588-NQ/ĐU (2025) - "Bình dân học vụ số"
+                </p>
             </div>
         </section>
 
-        <!-- COLUMN 2: TECHNICAL SOLUTIONS (40s) -->
-        <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-7 card-hover flex flex-col">
+        <!-- II. TECHNICAL SOLUTIONS -->
+        <section class="glass-card rounded-2xl p-7 flex flex-col group">
             <div class="flex items-center mb-6">
-                <div class="bg-blue-50 p-3 rounded-xl mr-4">
-                    <i class="fas fa-user-shield text-2xl text-blue-700"></i>
+                <div class="bg-blue-900/50 p-3 rounded-lg mr-4 border border-blue-500 group-hover:bg-blue-500 transition-colors">
+                    <i class="fas fa-shield-virus text-2xl text-blue-300 group-hover:text-white"></i>
                 </div>
-                <h2 class="text-xl font-bold text-gray-800">II. Giải pháp Kỹ thuật</h2>
+                <h2 class="text-xl font-bold text-white tracking-wide">II. Giải pháp Kỹ thuật</h2>
             </div>
 
             <div class="space-y-4 flex-grow">
-                <div class="p-4 border border-blue-100 rounded-xl bg-blue-50/30">
-                    <h3 class="font-bold text-blue-800 text-sm mb-2"><i class="fas fa-key mr-2"></i>Mã hóa & Xác thực</h3>
-                    <p class="text-sm text-gray-600">AES-256, MFA, PKI, Sinh trắc học khuôn mặt & Giọng nói (eKYC).</p>
+                <div class="p-4 bg-white/5 rounded-xl border-l-4 border-blue-500 hover:bg-white/10 transition-all">
+                    <div class="flex justify-between items-center mb-1">
+                        <h3 class="font-bold text-blue-300 text-xs uppercase">Mã hóa & Xác thực</h3>
+                        <i class="fas fa-key text-blue-500 text-xs"></i>
+                    </div>
+                    <p class="text-sm text-gray-300">AES-256, MFA, PKI, eKYC Sinh trắc học tiên tiến.</p>
                 </div>
 
-                <div class="p-4 border border-blue-100 rounded-xl bg-blue-50/30">
-                    <h3 class="font-bold text-blue-800 text-sm mb-2"><i class="fas fa-satellite-dish mr-2"></i>Giám sát Chủ động</h3>
-                    <p class="text-sm text-gray-600">IDS/IPS, Trung tâm SOC 24/7, SIEM tích hợp AI phát hiện bất thường.</p>
+                <div class="p-4 bg-white/5 rounded-xl border-l-4 border-emerald-500 hover:bg-white/10 transition-all">
+                    <div class="flex justify-between items-center mb-1">
+                        <h3 class="font-bold text-emerald-300 text-xs uppercase">Giám sát & Phòng thủ</h3>
+                        <i class="fas fa-eye text-emerald-500 text-xs"></i>
+                    </div>
+                    <p class="text-sm text-gray-300">IDS/IPS chủ động, SOC 24/7, SIEM tích hợp AI detection.</p>
                 </div>
 
-                <div>
-                    <h3 class="font-bold text-gray-700 text-xs uppercase mb-3 tracking-widest text-center">Đối tác chiến lược toàn cầu</h3>
+                <div class="mt-4">
+                    <h3 class="text-center text-[10px] text-gray-500 uppercase tracking-widest mb-3">Đối tác Global Security</h3>
                     <div class="flex flex-wrap justify-center gap-2">
-                        <span class="px-3 py-1 bg-white border border-gray-200 rounded text-xs font-bold text-gray-400">IBM Security</span>
-                        <span class="px-3 py-1 bg-white border border-gray-200 rounded text-xs font-bold text-gray-400">FORTINET</span>
-                        <span class="px-3 py-1 bg-white border border-gray-200 rounded text-xs font-bold text-gray-400">BKAV</span>
-                        <span class="px-3 py-1 bg-white border border-gray-200 rounded text-xs font-bold text-gray-400">CYRADAR</span>
+                        <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-gray-400">IBM SECURITY</span>
+                        <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-gray-400">FORTINET</span>
+                        <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-gray-400">BKAV</span>
+                        <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-gray-400">CYRADAR</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- COLUMN 3: CHALLENGES & PROPOSALS (30s) -->
-        <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-7 card-hover flex flex-col border-t-8 border-red-500">
+        <!-- III. CHALLENGES & PROPOSALS -->
+        <section class="glass-card rounded-2xl p-7 flex flex-col group border-t-8 border-red-500/50">
             <div class="flex items-center mb-6">
-                <div class="bg-red-50 p-3 rounded-xl mr-4">
-                    <i class="fas fa-exclamation-triangle text-2xl text-red-600"></i>
+                <div class="bg-red-900/50 p-3 rounded-lg mr-4 border border-red-500 group-hover:bg-red-500 transition-colors">
+                    <i class="fas fa-biohazard text-2xl text-red-300 group-hover:text-white"></i>
                 </div>
-                <h2 class="text-xl font-bold text-gray-800">III. Thách thức & Đề xuất</h2>
+                <h2 class="text-xl font-bold text-white tracking-wide">III. Thách thức & Đề xuất</h2>
             </div>
 
             <div class="space-y-6 flex-grow">
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 gap-4 bg-red-950/20 p-4 rounded-xl border border-red-900/30">
                     <div class="text-center">
-                        <p class="text-3xl font-black text-red-600">71%</p>
-                        <p class="text-[10px] text-gray-500 uppercase font-bold">Tấn công nhắm vào Ngân hàng</p>
+                        <p class="text-3xl font-black text-red-500">71%</p>
+                        <p class="text-[9px] text-gray-400 uppercase font-bold">Tấn công NH</p>
                     </div>
                     <div class="text-center">
-                        <p class="text-2xl font-black text-orange-600">18.9T</p>
-                        <p class="text-[10px] text-gray-500 uppercase font-bold">Tỷ đồng thiệt hại (2024)</p>
+                        <p class="text-2xl font-black text-orange-500">18.9T</p>
+                        <p class="text-[9px] text-gray-400 uppercase font-bold">Thiệt hại 2024</p>
                     </div>
                 </div>
 
-                <div class="space-y-4">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2">Giải pháp chiến lược tới 2030:</h3>
-                    <div class="flex items-center text-sm bg-gray-50 p-3 rounded-lg">
-                        <i class="fas fa-fingerprint text-red-500 mr-3 text-lg"></i>
-                        <span><b>Mô hình Zero Trust:</b> "Không tin tưởng, luôn xác minh".</span>
+                <div class="space-y-3">
+                    <div class="flex items-center text-sm p-3 bg-white/5 rounded-lg border-l-2 border-red-500">
+                        <i class="fas fa-radar text-red-400 mr-3"></i>
+                        <span class="text-gray-200">Mô hình <b>Zero Trust</b> - Luôn luôn xác minh.</span>
                     </div>
-                    <div class="flex items-center text-sm bg-gray-50 p-3 rounded-lg">
-                        <i class="fas fa-certificate text-red-500 mr-3 text-lg"></i>
-                        <span><b>ISO/IEC 27001:2022:</b> Chuẩn hóa quốc tế toàn diện.</span>
+                    <div class="flex items-center text-sm p-3 bg-white/5 rounded-lg border-l-2 border-red-500">
+                        <i class="fas fa-award text-red-400 mr-3"></i>
+                        <span class="text-gray-200">Chứng nhận <b>ISO/IEC 27001:2022</b>.</span>
                     </div>
-                    <div class="flex items-center text-sm bg-gray-50 p-3 rounded-lg">
-                        <i class="fas fa-brain text-red-500 mr-3 text-lg"></i>
-                        <span><b>AI-Powered Security:</b> Phòng vệ Deepfake & Phishing.</span>
+                    <div class="flex items-center text-sm p-3 bg-white/5 rounded-lg border-l-2 border-red-500">
+                        <i class="fas fa-robot text-red-400 mr-3"></i>
+                        <span class="text-gray-200">Ứng dụng <b>AI</b> phòng vệ Deepfake.</span>
                     </div>
                 </div>
             </div>
@@ -186,34 +279,44 @@
 
     </main>
 
-    <!-- FOOTER / SOURCE -->
-    <footer class="bg-gray-100 px-8 py-3 text-gray-500 text-[10px] flex justify-between items-center border-t">
-        <div>Nguồn: Vietcombank Report 2025 | VCS 2024 | Thông tư 09/2020/TT-NHNN</div>
-        <div class="font-bold uppercase tracking-widest">Đại học Ngân Hàng TP.HCM - HUB 2026</div>
+    <!-- FOOTER -->
+    <footer class="bg-black/50 px-8 py-2 text-gray-500 text-[10px] flex justify-between items-center border-t border-white/5 z-20">
+        <div class="flex gap-4">
+            <span>DATA SOURCE: Vietcombank 2025</span>
+            <span class="text-emerald-800">|</span>
+            <span>CYBER REPORT: VCS 2024</span>
+        </div>
+        <div class="font-bold uppercase tracking-[0.3em] text-emerald-900">University of Banking (HUB) - 2026</div>
     </footer>
 
-    <!-- INTERACTIVE FLOATING TIMER -->
-    <div id="timerContainer" class="fixed bottom-10 right-10 bg-white shadow-2xl rounded-2xl p-4 border border-gray-200 z-50 flex flex-col items-center min-w-[140px] transition-all duration-500">
-        <span class="text-[10px] font-black text-gray-400 tracking-widest mb-1 uppercase">Time Remaining</span>
-        <div id="countdown" class="text-4xl font-mono font-bold text-gray-800">03:00</div>
+    <!-- INTERACTIVE CYBER TIMER -->
+    <div id="timerContainer" class="fixed bottom-8 right-8 timer-security rounded-2xl p-5 z-50 flex flex-col items-center min-w-[160px] transition-all">
+        <div class="flex items-center gap-2 mb-2">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span class="text-[10px] font-black text-emerald-500 tracking-widest uppercase">SECURE SESSION</span>
+        </div>
         
-        <div class="flex gap-3 mt-3">
-            <button id="startBtn" onclick="toggleTimer()" class="w-10 h-10 rounded-full bg-[#005a3c] text-white flex items-center justify-center hover:bg-emerald-700 shadow-md">
+        <div id="countdown" class="text-4xl font-mono font-bold text-white mb-4 tracking-tighter">03:00</div>
+        
+        <div class="flex gap-4">
+            <button id="startBtn" onclick="toggleTimer()" class="cyber-btn w-10 h-10 text-white flex items-center justify-center shadow-lg hover:scale-110 active:scale-95">
                 <i id="playIcon" class="fas fa-play"></i>
             </button>
-            <button onclick="resetTimer()" class="w-10 h-10 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center hover:bg-gray-200">
-                <i class="fas fa-redo"></i>
+            <button onclick="resetTimer()" class="bg-white/10 w-10 h-10 rounded text-gray-400 flex items-center justify-center hover:bg-white/20 transition-all">
+                <i class="fas fa-redo-alt"></i>
             </button>
         </div>
         
-        <!-- Progress Bar -->
-        <div class="w-full h-1 bg-gray-100 rounded-full mt-4 overflow-hidden">
-            <div id="progressBar" class="h-full bg-[#005a3c] transition-all duration-1000" style="width: 100%"></div>
+        <div class="w-full h-1 bg-gray-900 rounded-full mt-5 overflow-hidden border border-white/5">
+            <div id="progressBar" class="h-full bg-emerald-500 transition-all duration-1000 shadow-[0_0_10px_#10b981]" style="width: 100%"></div>
         </div>
     </div>
 
     <script>
-        let timeLeft = 180; // 3 minutes in seconds
+        let timeLeft = 180;
         let timerId = null;
         let isRunning = false;
 
@@ -227,22 +330,21 @@
             const seconds = timeLeft % 60;
             display.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             
-            // Progress Bar update
             const percentage = (timeLeft / 180) * 100;
             progressBar.style.width = percentage + '%';
 
-            // Warning styles
             if (timeLeft <= 30 && timeLeft > 0) {
-                display.classList.add('timer-warning');
-                container.classList.add('border-red-500', 'scale-110');
+                display.classList.add('text-red-500', 'animate-pulse');
+                container.style.borderColor = '#ef4444';
+                container.style.boxShadow = '0 0 30px rgba(239, 68, 68, 0.4)';
             } else if (timeLeft === 0) {
-                display.classList.remove('timer-warning');
-                display.textContent = "TIME UP";
-                display.classList.add('text-red-600', 'text-2xl');
+                display.classList.remove('animate-pulse');
+                display.textContent = "THREAT!";
+                display.classList.add('text-red-600');
                 clearInterval(timerId);
             } else {
-                display.classList.remove('timer-warning');
-                container.classList.remove('border-red-500', 'scale-110');
+                display.classList.remove('text-red-500', 'animate-pulse');
+                container.style.borderColor = '#8dc63f';
             }
         }
 
@@ -267,11 +369,10 @@
             timeLeft = 180;
             isRunning = false;
             playIcon.className = 'fas fa-play';
-            display.classList.remove('text-red-600', 'text-2xl');
+            display.classList.remove('text-red-600');
             updateDisplay();
         }
 
-        // Spacebar to play/pause
         document.addEventListener('keydown', (e) => {
             if (e.code === 'Space') {
                 e.preventDefault();
@@ -279,7 +380,6 @@
             }
         });
 
-        // Initialize
         updateDisplay();
     </script>
 </body>
